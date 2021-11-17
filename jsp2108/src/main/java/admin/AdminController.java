@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("*.ad")
-public class AdController extends HttpServlet{
+public class AdminController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AdInterface command = null;
+		AdminInterface command = null;
 		String viewPage = "/WEB-INF/admin";
 		String uri = request.getRequestURI();
 		String com = uri.substring(uri.lastIndexOf("/"), uri.lastIndexOf("."));
@@ -25,7 +25,14 @@ public class AdController extends HttpServlet{
 			viewPage += "/adLeft.jsp";
 		}
 		else if(com.equals("/adContent")) {
+			command = new AdContentCommand();
+			command.execute(request, response);
 			viewPage += "/adContent.jsp";
+		}
+		else if(com.equals("/adMemberList")) {
+			command = new AdMemberListCommand();
+			command.execute(request, response);
+			viewPage += "/member/adMemberList.jsp";
 		}
 		
 		
