@@ -8,6 +8,14 @@
   <meta charset="UTF-8">
   <title>adLeft</title>
   <%@ include file="../../include/bs4.jsp" %>
+  <script>
+  	function logoutCheck() {
+  		parent.location.href = "";
+  	}
+  </script>
+  <style>
+  	body {background-color: #ddd}
+  </style>
 </head>
 <body>
   <p><br></p>
@@ -17,6 +25,7 @@
 		<p><a href="${ctp}/adMemberList.ad" target="adContent">회원관리</a></p>		
 		<hr>
 		<p><a href="<%=request.getContextPath()%>/" target="_top">돌아가기</a></p>		
+		<p><a href="javascript:logoutCheck()">로그아웃</a></p>		
 		<hr>
   </div>
   <br>
