@@ -246,13 +246,34 @@ public class MemberDAO {
 	}
 
 	// 회원 전체 리스트 가져오기
-	public ArrayList<MemberVO> getMemberList(int startIndexNo, int pageSize) {
+	public ArrayList<MemberVO> getMemberList(int startIndexNo, int pageSize, int level, String mid) {
 		ArrayList<MemberVO> vos = new ArrayList<MemberVO>();
 		try {
-			sql = "select * from member order by idx desc limit ?, ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, startIndexNo);
-			pstmt.setInt(2, pageSize);
+			if(level != 99 && !mid.equals("")) {
+				sql = "select * from member where level = ? and mid like ? order by idx desc limit ?, ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, level);
+				pstmt.setString(2, "%"+mid+"%");
+				pstmt.setInt(3, startIndexNo);
+				pstmt.setInt(4, pageSize);
+			} else if(level != 99) {
+					sql = "select * from member where level = ? order by idx desc limit ?, ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, level);
+					pstmt.setInt(2, startIndexNo);
+					pstmt.setInt(3, pageSize);
+			} else if(!mid.equals("")) {
+				sql = "select * from member where mid like ? order by idx desc limit ?, ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%"+mid+"%");
+				pstmt.setInt(2, startIndexNo);
+				pstmt.setInt(3, pageSize);
+			} else {
+				sql = "select * from member order by idx desc limit ?, ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, startIndexNo);
+				pstmt.setInt(2, pageSize);
+			}
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				vo = new MemberVO();
@@ -333,11 +354,26 @@ public class MemberDAO {
 	}
 
 	// 페이징처리를 위한 총 회원수 구하기
-	public int totRecCnt() {
+	public int totRecCnt(int level, String mid) {
 		int totRecCnt = 0;
 		try {
-			sql = "select count(*) from member";
-			pstmt = conn.prepareStatement(sql);
+			if(level != 99 && !mid.equals("")) {
+				sql = "select count(*) from member where level=? and mid like ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, level);
+				pstmt.setString(2, "%"+mid+"%");
+			} else if(level != 99) {
+				sql = "select count(*) from member where level=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, level);
+			} else if(!mid.equals("")) {
+				sql = "select count(*) from member where mid like ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%"+mid+"%");
+			} else {
+				sql = "select count(*) from member";
+				pstmt = conn.prepareStatement(sql);
+			}
 			rs = pstmt.executeQuery();
 			rs.next();
 			totRecCnt = rs.getInt(1);
@@ -347,6 +383,20 @@ public class MemberDAO {
 			getConn.rsClose();
 		}
 		return totRecCnt;
+	}
+
+	// 회원을 member테이블에서 삭제처리한다.
+	public void setMemberReset(int idx) {
+		try {
+			sql = "delete from member where idx = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " + e.getMessage());
+		} finally {
+			getConn.pstmtClose();
+		}
 	}
 			
 }
