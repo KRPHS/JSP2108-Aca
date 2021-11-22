@@ -1,8 +1,6 @@
 package study.ajax;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,22 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import study.mapping2.UserDAO;
 import study.mapping2.UserVO;
 
-@WebServlet("/userList")
-public class UserList extends HttpServlet {
+@WebServlet("/userUpdate")
+public class UserUpdate extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserDAO dao = new UserDAO();
-		List<UserVO> vos = dao.getUserList();
+		int idx = Integer.parseInt(request.getParameter("idx"));
 		
-		request.setAttribute("vos", vos);
+		UserVO vo = dao.getSearch(idx);
 		
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/study/ajax/ajax1.jsp");
-//		dispatcher.forward(request, response);
-		response.getWriter().write("1");
+		request.setAttribute("vo", vo);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/study/ajax/userUpdate.jsp");
+		dispatcher.forward(request, response);
 	}
 }
