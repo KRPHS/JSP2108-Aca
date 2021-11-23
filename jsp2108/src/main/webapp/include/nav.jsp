@@ -71,7 +71,7 @@
 		        <a class="nav-link" href="<%=request.getContextPath()%>/memLogOut.mem">LogOut</a>
 	      </li>
 <%    } else { %>
-	      <li>
+	      <li class="nav-item">
 	  	      <a class="nav-link" href="<%=request.getContextPath()%>/memLogin.mem">Login</a>
 	  	  </li>
 	      <li class="nav-item">

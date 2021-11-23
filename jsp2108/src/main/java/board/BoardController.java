@@ -21,7 +21,7 @@ public class BoardController extends HttpServlet {
 		String com = uri.substring(uri.lastIndexOf("/"), uri.lastIndexOf("."));
 		
 		HttpSession session = request.getSession();
-		int level = (int) session.getAttribute("sLevel");
+		int level = session.getAttribute("sLevel")==null ? 99 : (int) session.getAttribute("sLevel");
 		if(level == 1 || level >= 4) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/");
 			dispatcher.forward(request, response);
@@ -37,6 +37,26 @@ public class BoardController extends HttpServlet {
 			command = new BoInputCommand();
 			command.execute(request, response);
 			viewPage += "/boInput.jsp";
+		}
+		else if(com.equals("/boInputOk")) {
+			command = new BoInputOkCommand();
+			command.execute(request, response);
+			viewPage = "/WEB-INF/message/message.jsp";
+		}
+		else if(com.equals("/boContent")) {
+			command = new BoContentCommand();
+			command.execute(request, response);
+			viewPage += "/boContent.jsp";
+		}
+		else if(com.equals("/boDelete")) {
+			command = new BoDeleteCommand();
+			command.execute(request, response);
+			viewPage = "/WEB-INF/message/message.jsp";
+		}
+		else if(com.equals("/boGood")) {
+			command = new BoGoodCommand();
+			command.execute(request, response);
+			viewPage += "/boContent.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

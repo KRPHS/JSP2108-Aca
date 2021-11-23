@@ -113,7 +113,7 @@
 		</table>
 		<br>
 <!-- 페이징처리 시작 -->
-<c:if test="${pag == 0 }">찾는자료가 없습니다.</c:if>
+<c:if test="${pag == 0 }"><p class="text-center">찾는자료가 없습니다.</p></c:if>
 <c:if test="${pag != 0 }">
 	<div style="text-align:center;">
 	<c:if test="${pag != 1}"><a href="${ctp }/adMemberList.ad?pag=1&level=${level}&mid=${mid}">◁◁</a></c:if>

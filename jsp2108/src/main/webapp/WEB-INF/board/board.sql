@@ -12,7 +12,7 @@ create table board(
 	wDate			datetime			not null 			default now(),	/* 글 작성 날짜 */
 	readNum		int						default 0,										/* 게시글 조회수 */
 	hostIp		varchar(50)		not null,											/* 게시자의 아이피 */
-	goods			int						default 0,										/* 좋아요 */
+	good			int						default 0,										/* 좋아요 */
 	mid				varchar(20)		not null,											/* 회원 아이디(게시글 조회시 사용) */
 	primary		key(idx)
 );

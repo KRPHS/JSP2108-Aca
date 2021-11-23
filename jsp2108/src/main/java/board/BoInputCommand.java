@@ -15,7 +15,7 @@ public class BoInputCommand implements BoardInterface {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String mid = session.getAttribute("mid")==null ? "" : (String) session.getAttribute("mid");
+		String mid = session.getAttribute("sMid")==null ? "" : (String) session.getAttribute("sMid");
 		
 		MemberDAO dao = new MemberDAO();
 		

@@ -17,7 +17,6 @@ public class MemListCommand implements MemberInterface {
 		MemberDAO dao = new MemberDAO();
 		
 		int pag = request.getParameter("pag")==null ? 1 : Integer.parseInt(request.getParameter("pag"));	// 현재페이지 구하기
-	  
 	  int pageSize = 5;
 	  int totRecCnt = dao.totRecCnt(level, mid);
 	  int totPage = (totRecCnt % pageSize)==0 ? totRecCnt/pageSize : (totRecCnt/pageSize) + 1;
