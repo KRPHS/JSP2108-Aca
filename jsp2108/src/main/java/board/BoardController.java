@@ -58,6 +58,44 @@ public class BoardController extends HttpServlet {
 			command.execute(request, response);
 			viewPage += "/boContent.jsp";
 		}
+		else if(com.equals("/boGood2")) {
+			int idx = request.getParameter("idx") == null ? 0 : Integer.parseInt(request.getParameter("idx"));
+			int flag = request.getParameter("flag") == null ? 0 : Integer.parseInt(request.getParameter("flag"));
+			BoardDAO dao = new BoardDAO();
+			dao.setGoodUpdate2(idx, flag);
+			return;
+		}
+		else if(com.equals("/boUpdate")) {
+			command = new BoUpdateCommand();
+			command.execute(request, response);
+			viewPage += "/boUpdate.jsp";
+		}
+		else if(com.equals("/boUpdateOk")) {
+			command = new BoUpdateOkCommand();
+			command.execute(request, response);
+			viewPage = "/WEB-INF/message/message.jsp";
+		}
+		else if(com.equals("/boSearch")) {
+			command = new BoSearchCommand();
+			command.execute(request, response);
+			viewPage += "/boSearch.jsp";
+		}
+		else if(com.equals("/boReplyInput")) {
+			command = new BoReplyInputCommand();
+			command.execute(request, response);
+			viewPage = "/WEB-INF/message/message.jsp";
+		}
+		else if(com.equals("/boReplyUpdateOk")) {
+			command = new BoReplyUpdateOkCommand();
+			command.execute(request, response);
+			return;
+		}
+		else if(com.equals("/boReplyDelete")) {
+			int replyIdx = request.getParameter("replyIdx") == null ? 0 : Integer.parseInt(request.getParameter("replyIdx"));
+			BoardDAO dao = new BoardDAO();
+			dao.setReplyDelete(replyIdx);
+			return;
+		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

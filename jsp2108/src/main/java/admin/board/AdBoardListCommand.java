@@ -1,4 +1,4 @@
-package board;
+package admin.board;
 
 import java.io.IOException;
 import java.util.List;
@@ -7,7 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class BoListCommand implements BoardInterface {
+import admin.AdminInterface;
+import board.BoardDAO;
+import board.BoardVO;
+
+public class AdBoardListCommand implements AdminInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
