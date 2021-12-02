@@ -33,6 +33,12 @@
   	else if(msg == "boUpdateOk") msg = "게시글을 수정했습니다.";
   	else if(msg == "boUpdateNo") msg = "게시글이 수정실패";
   	else if(msg == "replyBoardInputOk") msg = "댓글이 작성되었습니다.";
+  	else if(msg == "upLoad1Ok") msg = "파일이 업로드 되었습니다.";
+  	else if(msg == "upLoad1No") msg = "파일이 업로드 실패";
+  	else if(msg == "fileDeleteOk") msg = "파일이 삭제 되었습니다.";
+  	else if(msg == "fileDeleteNo") msg = "파일이 삭제 실패";
+  	else if(msg == "pdsInputOk") msg = "자료파일이 업로드 되었습니다.";
+  	else if(msg == "pdsInputNo") msg = "자료파일이 업로드 실패";
   	
     alert(msg);
     if(url != "") location.href = url;
