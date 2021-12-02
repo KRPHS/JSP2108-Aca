@@ -108,6 +108,7 @@
 %>
 			</tr>
 		</table>
+		<textarea cols="5" style="resize: none; width: 100%" disabled>asdf</textarea>
   </div>
   <br>
   <%@ include file="/include/footer.jsp" %>
