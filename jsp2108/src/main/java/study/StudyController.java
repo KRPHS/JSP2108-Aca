@@ -101,9 +101,7 @@ public class StudyController extends HttpServlet{
 			return;
 		}
 		else if(com.equals("/calendar")) {
-			command = new ShaTestOkCommand();
-			command.execute(request, response);
-			return;
+			viewPage += "/calendar/calendar.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
