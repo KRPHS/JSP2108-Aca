@@ -34,8 +34,7 @@
 						<c:if test="${mSw == 3 || mSw == 4 }">${vo.receiveId }</c:if>
 					</td>
 					<td><a href="${ctp }/wmMessage.wm?mSw=6&idx=${vo.idx}">
-						<c:if test="${vo.sendSw == 'g'}">[보낸메시지]</c:if>
-						<c:if test="${vo.sendSw != 'g'}"></c:if>
+						<c:if test="${vo.sendSw == 'g' && mSw == 5}">[보낸메시지]</c:if>
 						${vo.title }</a>
 						<c:if test="${vo.receiveSw == 'n' }"><img src="${ctp }/images/new.gif"></c:if>
 						<c:if test="${mSw == 3 }">
