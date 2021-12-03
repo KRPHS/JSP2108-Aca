@@ -43,6 +43,10 @@
   	else if(msg == "scContentNo") msg = "등록 실패 !";
   	else if(msg == "scDeleteOk") msg = "일정이 삭제 성공 !";
   	else if(msg == "scDeleteNo") msg = "일정이 삭제 실패 !";
+  	else if(msg == "wmInputOk") msg = "메시지를 보냈습니다.";
+  	else if(msg == "wmInputNo") msg = "메시지를 보내는데 실패했습니다.";
+  	else if(msg == "wmDeleteOk") msg = "메시지를 휴지통으로 보냈습니다.";
+  	else if(msg == "wmDeleteNo") msg = "메시지를 휴지통으로 보내지 못했습니다.";
   	
     alert(msg);
     if(url != "") location.href = url;
